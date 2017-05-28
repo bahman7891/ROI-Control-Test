@@ -4,30 +4,11 @@
 ### Bahman Roostaei
 
 
-```python
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-%matplotlib inline
-from datetime import datetime
-```
 
-
-```python
-data = pd.read_csv('all_users.csv')
-```
 
 ### 1. Append a new column to the data in 'All Users' that identifies which buyers in the Test group were Redeemers and which were Non-Redeemers.														
 
 
-```python
-data_redm['Redeemer'] = ['1' for _ in range(data_redm.shape[0])]
-```
-
-
-```python
-data_redm.head()
-```
 
 
 
@@ -73,27 +54,6 @@ data_redm.head()
 
 
 
-
-```python
-left = data.set_index('User ID')
-```
-
-
-```python
-right = data_redm.set_index('User ID')
-```
-
-
-```python
-df = left.join(right, how='outer')
-```
-
-#### df index is now the User ID:
-
-
-```python
-df.sample(frac=1).head()
-```
 
 
 
