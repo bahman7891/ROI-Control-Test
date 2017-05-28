@@ -123,6 +123,82 @@
 </table>
 </div>
 
+#### df index is now the User ID:
+
+
+```python
+df.sample(frac=1).head()
+```
+
+
+
+
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Group</th>
+      <th>Week</th>
+      <th>Spend</th>
+      <th>Purchases</th>
+      <th>Redeemer</th>
+    </tr>
+    <tr>
+      <th>User ID</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>322708953</th>
+      <td>Test</td>
+      <td>2/16/15</td>
+      <td>$\t33.91</td>
+      <td>3</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>706419504</th>
+      <td>Test</td>
+      <td>1/12/15</td>
+      <td>$\t170.49</td>
+      <td>5</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>112129399</th>
+      <td>Test</td>
+      <td>2/16/15</td>
+      <td>$\t275.68</td>
+      <td>4</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>110099342</th>
+      <td>Test</td>
+      <td>1/12/15</td>
+      <td>$\t2,141.33</td>
+      <td>3</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>31650494</th>
+      <td>Test</td>
+      <td>11/3/14</td>
+      <td>$\t25.16</td>
+      <td>4</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
 
 
 ### 2. For each group (Control, Test-Redeemers, Test-NonRedeemers), show how spend varied over the 12 week period between 24th November 14 and 9th February 15 (from 6 weeks before the coupon 'drop date' to 6 weeks after). Graphical results are always welcome!	
