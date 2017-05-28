@@ -129,11 +129,6 @@
 															
 
 
-```python
-testredm_spend = df_testredm_splt_ts.groupby('week_date').apply(np.sum)
-testnonredm_spend = df_testnonredm_splt_ts.groupby('week_date').apply(np.sum)
-control_spend = df_control_splt_ts.groupby('week_date').apply(np.sum)
-```
 
 #### Plot of non-normalized data:
 
@@ -156,15 +151,6 @@ fig.autofmt_xdate()
 
 
 
-```python
-fig, ax = plt.subplots(1)
-ax.plot(testredm_spend_per['spend_float'],marker='o',label='Test Redeem')
-ax.plot(testnonredm_spend_per['spend_float'],marker='o',label='Test Non-Redeem')
-ax.plot(control_spend_per['spend_float'],marker='o',label='Control')
-plt.ylabel('Total spending per customer ($)')
-plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
-fig.autofmt_xdate()
-```
 
 
 ![png](output_16_0.png)
@@ -173,16 +159,7 @@ fig.autofmt_xdate()
 ### 3. What is the incremental spend in the six weeks after the coupons were sent (additional spend above what we would have expected had no coupon been sent out) for the total Test group (Redeemers and Non-Redeemers) vs. Control? Please express your answer in absolute ($) and % terms. You can use Excel or any other tool of your choice (e.g. R).	
 
 
-```python
-increm_control_spend = total_control_spend_after - total_control_spend_before
-```
 
-
-```python
-print('Incremental spend in six weeks after coupons were sent out for test group:\n','$',
-      increm_test_spend)
-print('In fact we see a reduction in total spend.')
-```
 
     Incremental spend in six weeks after coupons were sent out for test group:
      $ -3384779.240000056
@@ -190,11 +167,7 @@ print('In fact we see a reduction in total spend.')
 
 
 
-```python
-print('Incremental spend in six weeks after coupons were sent out for control group:\n','$',
-      increm_control_spend)
-print('In fact we see a reduction in total spend.')
-```
+
 
     Incremental spend in six weeks after coupons were sent out for control group:
      $ -936454.5699999986
@@ -202,10 +175,7 @@ print('In fact we see a reduction in total spend.')
 
 
 
-```python
-print('Comparing the test and control incremental spend:')
-print((increm_test_spend - increm_control_spend)/ increm_control_spend)
-```
+
 
     Comparing the test and control incremental spend:
     2.614461767216387
@@ -214,14 +184,6 @@ print((increm_test_spend - increm_control_spend)/ increm_control_spend)
 #### The test group shows 2.6 times higher in reduction in spend. However it makes more sense to measure the above values per customer:
 
 
-```python
-print('total increment per test customer:')
-r_test_after = total_test_spend_after/ n_test_after
-r_test_before = total_test_spend_before/ n_test_before
-print('$',r_test_after - r_test_before)
-print('percentage:',100*(r_test_after - r_test_before)/(r_test_before)
-     ,'%')
-```
 
     total increment per test customer:
     $ -807.7031479393006
@@ -229,14 +191,7 @@ print('percentage:',100*(r_test_after - r_test_before)/(r_test_before)
 
 
 
-```python
-print('total increment per control customer:')
-r_control_after = total_control_spend_after/ n_control_after
-r_control_before = total_control_spend_before/ n_control_before
-print('$',r_control_after - r_control_before)
-print('percentage:',100*(r_control_after - r_control_before)/(r_control_before)
-     ,'%')
-```
+
 
     total increment per control customer:
     $ -931.9504326689521
@@ -248,10 +203,7 @@ print('percentage:',100*(r_control_after - r_control_before)/(r_control_before)
 ### 4. We calculate revenue as Revenue = Spend x Take Rate. Assuming that Take Rate is 10% and that the cost of the coupon campaign is equal to the value of a coupon multiplied by the number of coupons redeemed, calculate the ROI of this campaign. 
 
 
-```python
-print('total revenue difference from control group:')
-print('$',total_test_spent*0.1 - 10*n_redeemers - total_control_spent*0.1)
-```
+
 
     total revenue difference from control group:
     $ 85259.11300000019
@@ -260,11 +212,6 @@ print('$',total_test_spent*0.1 - 10*n_redeemers - total_control_spent*0.1)
 #### However it makes more sense to draw conclusions per customer (adjust to the number of customers involved in each group):
 
 
-```python
-print('Adjusted ROI:')
-print(100*((total_test_spent*0.1/ n_test_after) - 10 - (total_control_spent*0.1/ n_control_after))/(10),
-     '%')
-```
 
     Adjusted ROI:
     37.57709481839164 %
