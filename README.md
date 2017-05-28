@@ -180,17 +180,6 @@
 #### Plot of non-normalized data:
 
 
-```python
-fig, ax = plt.subplots(1)
-ax.plot(testredm_spend['spend_float'],marker='o',label='Test Redeem')
-ax.plot(testnonredm_spend['spend_float'],marker='o',label='Test Non-Redeem')
-ax.plot(control_spend['spend_float'],marker='o',label='Control')
-plt.ylabel('Total spending ($)')
-plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
-fig.autofmt_xdate()
-```
-
-
 ![png](output_14_0.png)
 
 
