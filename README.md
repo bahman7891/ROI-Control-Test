@@ -1,1 +1,313 @@
-# ROI-Control-Test
+
+## Analytics Case Solution
+
+### Bahman Roostaei
+
+
+```python
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+%matplotlib inline
+from datetime import datetime
+```
+
+
+```python
+data = pd.read_csv('all_users.csv')
+```
+
+### 1. Append a new column to the data in 'All Users' that identifies which buyers in the Test group were Redeemers and which were Non-Redeemers.														
+
+
+```python
+data_redm['Redeemer'] = ['1' for _ in range(data_redm.shape[0])]
+```
+
+
+```python
+data_redm.head()
+```
+
+
+
+
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>User ID</th>
+      <th>Redeemer</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>122349</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>799706</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1032626</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>3535542</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>4369508</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+```python
+left = data.set_index('User ID')
+```
+
+
+```python
+right = data_redm.set_index('User ID')
+```
+
+
+```python
+df = left.join(right, how='outer')
+```
+
+#### df index is now the User ID:
+
+
+```python
+df.sample(frac=1).head()
+```
+
+
+
+
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Group</th>
+      <th>Week</th>
+      <th>Spend</th>
+      <th>Purchases</th>
+      <th>Redeemer</th>
+    </tr>
+    <tr>
+      <th>User ID</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>322708953</th>
+      <td>Test</td>
+      <td>2/16/15</td>
+      <td>$\t33.91</td>
+      <td>3</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>706419504</th>
+      <td>Test</td>
+      <td>1/12/15</td>
+      <td>$\t170.49</td>
+      <td>5</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>112129399</th>
+      <td>Test</td>
+      <td>2/16/15</td>
+      <td>$\t275.68</td>
+      <td>4</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>110099342</th>
+      <td>Test</td>
+      <td>1/12/15</td>
+      <td>$\t2,141.33</td>
+      <td>3</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>31650494</th>
+      <td>Test</td>
+      <td>11/3/14</td>
+      <td>$\t25.16</td>
+      <td>4</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+### 2. For each group (Control, Test-Redeemers, Test-NonRedeemers), show how spend varied over the 12 week period between 24th November 14 and 9th February 15 (from 6 weeks before the coupon 'drop date' to 6 weeks after). Graphical results are always welcome!	
+															
+
+
+```python
+testredm_spend = df_testredm_splt_ts.groupby('week_date').apply(np.sum)
+testnonredm_spend = df_testnonredm_splt_ts.groupby('week_date').apply(np.sum)
+control_spend = df_control_splt_ts.groupby('week_date').apply(np.sum)
+```
+
+#### Plot of non-normalized data:
+
+
+```python
+fig, ax = plt.subplots(1)
+ax.plot(testredm_spend['spend_float'],marker='o',label='Test Redeem')
+ax.plot(testnonredm_spend['spend_float'],marker='o',label='Test Non-Redeem')
+ax.plot(control_spend['spend_float'],marker='o',label='Control')
+plt.ylabel('Total spending ($)')
+plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
+fig.autofmt_xdate()
+```
+
+
+![png](output_14_0.png)
+
+
+#### Plot of normalized data:
+
+
+
+```python
+fig, ax = plt.subplots(1)
+ax.plot(testredm_spend_per['spend_float'],marker='o',label='Test Redeem')
+ax.plot(testnonredm_spend_per['spend_float'],marker='o',label='Test Non-Redeem')
+ax.plot(control_spend_per['spend_float'],marker='o',label='Control')
+plt.ylabel('Total spending per customer ($)')
+plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
+fig.autofmt_xdate()
+```
+
+
+![png](output_16_0.png)
+
+
+### 3. What is the incremental spend in the six weeks after the coupons were sent (additional spend above what we would have expected had no coupon been sent out) for the total Test group (Redeemers and Non-Redeemers) vs. Control? Please express your answer in absolute ($) and % terms. You can use Excel or any other tool of your choice (e.g. R).	
+
+
+```python
+increm_control_spend = total_control_spend_after - total_control_spend_before
+```
+
+
+```python
+print('Incremental spend in six weeks after coupons were sent out for test group:\n','$',
+      increm_test_spend)
+print('In fact we see a reduction in total spend.')
+```
+
+    Incremental spend in six weeks after coupons were sent out for test group:
+     $ -3384779.240000056
+    In fact we see a reduction in total spend.
+
+
+
+```python
+print('Incremental spend in six weeks after coupons were sent out for control group:\n','$',
+      increm_control_spend)
+print('In fact we see a reduction in total spend.')
+```
+
+    Incremental spend in six weeks after coupons were sent out for control group:
+     $ -936454.5699999986
+    In fact we see a reduction in total spend.
+
+
+
+```python
+print('Comparing the test and control incremental spend:')
+print((increm_test_spend - increm_control_spend)/ increm_control_spend)
+```
+
+    Comparing the test and control incremental spend:
+    2.614461767216387
+
+
+#### The test group shows 2.6 times higher in reduction in spend. However it makes more sense to measure the above values per customer:
+
+
+```python
+print('total increment per test customer:')
+r_test_after = total_test_spend_after/ n_test_after
+r_test_before = total_test_spend_before/ n_test_before
+print('$',r_test_after - r_test_before)
+print('percentage:',100*(r_test_after - r_test_before)/(r_test_before)
+     ,'%')
+```
+
+    total increment per test customer:
+    $ -807.7031479393006
+    percentage: -55.796212128011156 %
+
+
+
+```python
+print('total increment per control customer:')
+r_control_after = total_control_spend_after/ n_control_after
+r_control_before = total_control_spend_before/ n_control_before
+print('$',r_control_after - r_control_before)
+print('percentage:',100*(r_control_after - r_control_before)/(r_control_before)
+     ,'%')
+```
+
+    total increment per control customer:
+    $ -931.9504326689521
+    percentage: -64.84797583885303 %
+
+
+#### We see that the control customer shows more reduction in spend after coupons were sent out (64.8% vs. 55.8%).
+
+### 4. We calculate revenue as Revenue = Spend x Take Rate. Assuming that Take Rate is 10% and that the cost of the coupon campaign is equal to the value of a coupon multiplied by the number of coupons redeemed, calculate the ROI of this campaign. 
+
+
+```python
+print('total revenue difference from control group:')
+print('$',total_test_spent*0.1 - 10*n_redeemers - total_control_spent*0.1)
+```
+
+    total revenue difference from control group:
+    $ 85259.11300000019
+
+
+#### However it makes more sense to draw conclusions per customer (adjust to the number of customers involved in each group):
+
+
+```python
+print('Adjusted ROI:')
+print(100*((total_test_spent*0.1/ n_test_after) - 10 - (total_control_spent*0.1/ n_control_after))/(10),
+     '%')
+```
+
+    Adjusted ROI:
+    37.57709481839164 %
+
+
+
