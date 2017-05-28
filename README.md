@@ -126,11 +126,6 @@
 #### df index is now the User ID:
 
 
-```python
-df.sample(frac=1).head()
-```
-
-
 
 
 <div>
@@ -155,44 +150,84 @@ df.sample(frac=1).head()
   </thead>
   <tbody>
     <tr>
-      <th>322708953</th>
+      <th>228373538</th>
       <td>Test</td>
-      <td>2/16/15</td>
-      <td>$\t33.91</td>
-      <td>3</td>
-      <td>NaN</td>
+      <td>11/17/14</td>
+      <td>$\t63.16</td>
+      <td>1</td>
+      <td>0</td>
     </tr>
     <tr>
-      <th>706419504</th>
+      <th>18359220</th>
       <td>Test</td>
-      <td>1/12/15</td>
-      <td>$\t170.49</td>
+      <td>2/9/15</td>
+      <td>$\t13.12</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>128597303</th>
+      <td>Test</td>
+      <td>10/27/14</td>
+      <td>$\t328.88</td>
       <td>5</td>
       <td>1</td>
     </tr>
     <tr>
-      <th>112129399</th>
+      <th>185191994</th>
       <td>Test</td>
-      <td>2/16/15</td>
-      <td>$\t275.68</td>
-      <td>4</td>
-      <td>NaN</td>
+      <td>10/27/14</td>
+      <td>$\t78.61</td>
+      <td>7</td>
+      <td>0</td>
     </tr>
     <tr>
-      <th>110099342</th>
-      <td>Test</td>
-      <td>1/12/15</td>
-      <td>$\t2,141.33</td>
-      <td>3</td>
-      <td>NaN</td>
+      <th>9155956</th>
+      <td>Control</td>
+      <td>10/6/14</td>
+      <td>$\t54.54</td>
+      <td>1</td>
+      <td>0</td>
     </tr>
     <tr>
-      <th>31650494</th>
+      <th>612341541</th>
       <td>Test</td>
-      <td>11/3/14</td>
-      <td>$\t25.16</td>
-      <td>4</td>
-      <td>NaN</td>
+      <td>10/27/14</td>
+      <td>$\t67.38</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>168296194</th>
+      <td>Test</td>
+      <td>11/10/14</td>
+      <td>$\t23.25</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>75292137</th>
+      <td>Test</td>
+      <td>10/20/14</td>
+      <td>$\t327.16</td>
+      <td>5</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>41881793</th>
+      <td>Test</td>
+      <td>10/13/14</td>
+      <td>$\t81.52</td>
+      <td>2</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>686490932</th>
+      <td>Control</td>
+      <td>11/24/14</td>
+      <td>$\t77.12</td>
+      <td>5</td>
+      <td>0</td>
     </tr>
   </tbody>
 </table>
