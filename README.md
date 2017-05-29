@@ -195,38 +195,31 @@
 ### 3. What is the incremental spend in the six weeks after the coupons were sent (additional spend above what we would have expected had no coupon been sent out) for the total Test group (Redeemers and Non-Redeemers) vs. Control? Please express your answer in absolute ($) and % terms. You can use Excel or any other tool of your choice (e.g. R).	
 
 
-
+#### We take the spend by test group in six week after coupons are sent (Jan 5th 2015) and subtract the spend before the coupons were sent:
 
     Incremental spend in six weeks after coupons were sent out for test group:
      $ -3384779.240000056
     In fact we see a reduction in total spend.
 
 
-
-
+#### Then We take the spend by control group in six week after coupons are sent (Jan 5th 2015) and subtract the spend before the coupons were sent:
 
     Incremental spend in six weeks after coupons were sent out for control group:
      $ -936454.5699999986
     In fact we see a reduction in total spend.
 
-
-
-
+#### Now we take the relative difference of the above two numbers:
 
     Comparing the test and control incremental spend:
     2.614461767216387
 
 
-#### The test group shows 2.6 times higher in reduction in spend. However it makes more sense to measure the above values per customer:
-
-
+#### The test group shows 2.6 times higher in reduction in spend.
+#### However it makes more sense to measure the above values per customer so we perform the same calculation as above and normalize it (divide by the number of customers):
 
     total increment per test customer:
     $ -807.7031479393006
-    percentage: -55.796212128011156 %
-
-
-
+    percentage: -55.796212128011156 
 
 
     total increment per control customer:
@@ -236,18 +229,17 @@
 
 #### We see that the control customer shows more reduction in spend after coupons were sent out (64.8% vs. 55.8%).
 
+
 ### 4. We calculate revenue as Revenue = Spend x Take Rate. Assuming that Take Rate is 10% and that the cost of the coupon campaign is equal to the value of a coupon multiplied by the number of coupons redeemed, calculate the ROI of this campaign. 
 
 
+#### We take the total spend by test group after the coupons were sent and subtract the total spend by control group on that time period:
 
-
-    total revenue difference from control group:
+    total spend difference from control group:
     $ 85259.11300000019
 
 
-#### However it makes more sense to draw conclusions per customer (adjust to the number of customers involved in each group):
-
-
+#### However it makes more sense to draw conclusions per customer (adjust to the number of customers involved in each group). So we take the total spend by test group and divide by the number of test customers, then we subtract the same ratio for control group. We also subtract $10 for coupon cost for each customer and divide the whole number by $10 coupon cost invested per customer (We also include tha take rate):
 
     Adjusted ROI:
     37.57709481839164 %
